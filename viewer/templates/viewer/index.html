@@ -1,0 +1,19 @@
+{% extends "viewer/base.html" %}
+{% block content %}
+	<div class="header">
+	
+		<h2>Welcome to <a class="header" href="/">WANDA</a>,</h1>
+		
+		<p class="centered"> WANDA is a tool to help you choose the right data storage platform that serves all of your needs. By answering
+		a series of questions you will be guided towards the best data storage device for your information and get told how to go about
+		acquiring said storage.
+		</p>
+		
+		<form action="/questionnaire/" method="post" class="centered">
+  		{% csrf_token %}
+  		<input type="hidden" name="root" value="True">
+  		<input type="submit" value="Start" />
+		</form>
+		
+	</div>
+{% endblock content%}

@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>WANDA</title>
+  	<link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="{% static "css/base.css" %}" />
+  </head>
+  <body>
+  	<div class=="body">
+		<div class="main">
+			<div class="centeredContainer">
+				{% block content %}
+      			{% endblock content%}
+      		</div>
+      	</div>
+    </div>
+      	<div class="footer">
+			<p class="footer"><a class="header" href="/">WANDA</a>: Wireless Automated Nagging for Data and Answers</p>
+      	</div>
+  </body>
+</html>
