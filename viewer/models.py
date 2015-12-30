@@ -4,8 +4,10 @@ from django.db import models
 class Answer(models.Model):
     text = models.CharField(max_length=400, default='answer')
 
-class Node(models.Model):
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='children')
+class Question(models.Model):
+    children = models.ForeignKey('self', blank=True, null=True, related_name='parent')
     answer = models.ForeignKey(Answer)
-    question_text = models.CharField(max_length=200, default='question')
-    result = models.BooleanField(default=False)
+    text = models.CharField(max_length=200, default='question')
+    
+class Tree(models.Model):
+    start = models.ForeignKey(Question)
