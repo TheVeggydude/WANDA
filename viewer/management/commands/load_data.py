@@ -36,18 +36,13 @@ class Command(BaseCommand):
             
             # Create Answer objects for all the answers and add them to the question object
             # At the same time recursively get a new question object related to that answer
-            answer_set = []
-            children_set = []
             for answer_dict in dict['Answers']:
-                answer = Answer(text= answer_dict['Text'])
+
+                answer = Answer(text= answer_dict['Text'], question = question)
                 answer.save()
-                answer_set.append(answer)
-                
+
                 child_question = self.json_to_node(answer_dict['Node'])
-                children_set.append(child_question)
-                
-            question.answers = answer_set
-            question.children = children_set
+                question.children.add(child_question)
             
             # Save again as there have been (numeral) changes
             question.save()
