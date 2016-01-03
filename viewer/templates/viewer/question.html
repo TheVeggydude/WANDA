@@ -12,7 +12,7 @@
 	<form action="/questionnaire/" method="post">
         {% csrf_token %}
         {% for answer in question.answer_set.all %}
-            <input type="submit" name="choice" value={{answer.text}} class="pink-button"/>
+            <input type="submit" name="choice" value='{{answer.text}}' class="pink-button"/>
         {% endfor %}
 
     </form>

@@ -37,7 +37,6 @@ class Command(BaseCommand):
             # Create Answer objects for all the answers and add them to the question object
             # At the same time recursively get a new question object related to that answer
             for answer_dict in dict['Answers']:
-
                 answer = Answer(text= answer_dict['Text'], question = question)
                 answer.save()
 
