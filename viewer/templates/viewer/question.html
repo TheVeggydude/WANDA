@@ -2,15 +2,18 @@
 {% block content %}
 	<div class="header">
 	
-		<h2>Question:</h1>
+		<h2>Question:</h2>
 		
-		{% if not answered %}
-			<p class="centeredYellow"> Please answer the question!
-			</p>
-		{% endif %}
-		
-		<p class="centered"> The question text should go here, followed by a list of the answer options.
+		<p class="centered"> {{question.text}}
 		</p>
 		
 	</div>
+
+	<form action="/questionnaire/" method="post">
+        {% csrf_token %}
+        {% for answer in question.answer_set.all %}
+            <input type="submit" name="choice" value={{answer.text}} class="pink-button"/>
+        {% endfor %}
+
+    </form>
 {% endblock content%}

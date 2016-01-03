@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from viewer.models import *
 
 
 # Create your views here.
@@ -9,17 +9,15 @@ def index(request):
 
 def question(request):
     
-    dict = {}
+    context = {}
+
+    # If root, then select the first question in the tree to be shown
+    if 'start' in request.POST:
+        context['question'] = Tree.objects.all().first().start
     
-    if request.POST["root"] == "True":
-        dict['answered'] = True
-        dict['questionID'] = 0
+        return render(request, 'viewer/question.html', context)
     
-        return render(request, 'viewer/question.html', dict)
-    
-    dict['answered'] = False
-    
-    return render(request, 'viewer/question.html', dict)
+    return render(request, 'viewer/question.html', context)
 
 
 #Error Responses:
