@@ -19,32 +19,30 @@ class Command(BaseCommand):
         #TODO This is sort of a hack in my opinion... Reconsider the whole node/question model thing?
         # If you are looking at an end node in stead of a normal question only add question text
         if 'End' in dict:
-            leaf, created = Question.objects.get_or_create(text = dict['End'])
-            if created:
-                # Initial save to create object in database
-                leaf.save()
+            leaf = Question(text = dict['End'])
+            # Initial save to create object in database
+            leaf.save()
             return leaf
         
         # Try to find an existing question object with the same question, or create a new one if it doesn't exist yet
-        question, created = Question.objects.get_or_create(text = dict['Question'])
+        question = Question.objects.create(text = dict['Question'])
         
         # It is was already created we need not do anything but return the object so we can have
         # Multiple questions referring to the same question
-        if created:
-            # Initial save to create object in database
-            question.save()
-            
-            # Create Answer objects for all the answers and add them to the question object
-            # At the same time recursively get a new question object related to that answer
-            for answer_dict in dict['Answers']:
-                answer = Answer(text= answer_dict['Text'], question = question)
-                answer.save()
+        # Initial save to create object in database
+        question.save()
+        
+        # Create Answer objects for all the answers and add them to the question object
+        # At the same time recursively get a new question object related to that answer
+        for answer_dict in dict['Answers']:
+            answer = Answer(text= answer_dict['Text'], question = question)
+            answer.save()
 
-                child_question = self.json_to_node(answer_dict['Node'])
-                question.children.add(child_question)
-            
-            # Save again as there have been (numeral) changes
-            question.save()
+            child_question = self.json_to_node(answer_dict['Node'])
+            question.children.add(child_question)
+        
+        # Save again as there have been (numeral) changes
+        question.save()
                 
         return question
     
