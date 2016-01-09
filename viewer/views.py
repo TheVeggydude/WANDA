@@ -18,8 +18,7 @@ def question(request):
         return render(request, 'viewer/question.html', context)
 
     # Not a start node, so get the answer text and find the corresponding question
-    print(request.POST['choice'])
-    question = Answer.objects.get(text = request.POST['choice']).question
+    question = Question.objects.all().get(id = request.POST['question'])
     counter = 0
     for answer in question.answer_set.all():
         counter +=1
