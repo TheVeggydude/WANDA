@@ -81,6 +81,7 @@ p.footer {
   border: 0;
   cursor: pointer;
   margin-top: 10px;
+  white-space: normal;
 }
 
 .pink-button:hover {
@@ -89,4 +90,5 @@ p.footer {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
+  white-space: normal;
 }

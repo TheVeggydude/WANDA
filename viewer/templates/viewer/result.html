@@ -2,7 +2,7 @@
 {% block content %}
 	<div class="header">
 		<h2>Result:</h1>
-		<p class="centered"> {{question.text | urlize}}
+		<p class="centered"> {{question.text | linebreaksbr | urlize}}
 		</p>
 	</div>
 {% endblock content%}
