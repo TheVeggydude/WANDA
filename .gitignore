@@ -1,5 +1,7 @@
-*.pyc
+﻿*.pyc
 *.xml
 *.iml
 *.name
 *.sqlite3
+*.class
+*.cpython-34.pyc
